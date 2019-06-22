@@ -1,7 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: miro
- * Date: 6/22/19
- * Time: 12:27 AM
- */
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// Echo session variables that were set on previous page
+echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>";
+echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+?>
+
+</body>
+</html> 
