@@ -1,30 +1,43 @@
 <html>
 <body>
-
-
-
-
-
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
-    Name: <input type="text" name="fname">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+    Name: <input type="text" name ='fname'>
     <input type="submit">
 </form>
 
+
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // collect value of input field
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
         $name = $_REQUEST['fname'];
-        if (empty($name)) {
-            echo "Name is empty";
-        } else {
-            echo $name;
-        }
-    }
-//?>
 
-
-
-
+if(empty($name)){
+    echo "Prazdny input";
+}else {
+    echo "name is : $name";
+}
+}
+?>
 </body>
 </html>
+
+<!--<html>-->
+<!--<body>-->
+<!--<form method="post" action="--><?php //echo htmlspecialchars($_SERVER["PHP_SELF"]);?><!--">-->
+<!--    Name: <input type="text" name="fname">-->
+<!--    <input type="submit">-->
+<!--</form>-->
+<!---->
+<?php
+//    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//        // collect value of input field
+//        $name = $_REQUEST['fname'];
+//        if (empty($name)) {
+//            echo "Name is empty";
+//        } else {
+//            echo $name;
+//        }
+//    }
+////?>
+<!--</body>-->
+<!--</html>-->
