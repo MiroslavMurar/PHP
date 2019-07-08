@@ -1,23 +1,21 @@
 <html>
 <body>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
-    Name: <input type="text" name ='fname'>
+
+<form method = "POST" action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    NAME : <input type="text" name = "fname">
+    <br>
+    E-MAIL :  <input type = "text" name = "email">
+    <br>
     <input type="submit">
 </form>
 
-
 <?php
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        $name = $_REQUEST['fname'];
+if($_SERVER["REQUEST_METHOD"] == "POST") {$name = $_REQUEST["fname"];}
+if (empty($name)) {echo "Nevlozil si meno"; } else { echo "Vlozene meno je ". $name ;}
 
-if(empty($name)){
-    echo "Prazdny input";
-}else {
-    echo "name is : $name";
-}
-}
 ?>
+
+
 </body>
 </html>
 

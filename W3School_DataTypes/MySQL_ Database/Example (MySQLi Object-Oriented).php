@@ -3,16 +3,43 @@ $servername = "database";
 $username = "root";
 $password = "pass";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
+if ($conn->connect_error) {die ("Invalid to connect: ". $conn->connect_error);}
+
+$sql = "CREATE DATABASE Skuska001";
+
+if($conn->query($sql) === TRUE) {echo "Database created !";} else {echo "Database is NOT created ". $conn->error;}
+
+$conn->close();
+
+
 ?>
 
+
+
+
+
 <?php
-// $conn->close();
-?>
+//$servername = "database";
+//$username = "root";
+//$password = "pass";
+//
+//
+//// Create connection
+//$conn = new mysqli($servername, $username, $password);
+//// Check connection
+//if ($conn->connect_error) {
+//    die("Connection failed: " . $conn->connect_error);
+//}
+//
+//// Create database
+//$sql = "CREATE DATABASE myDB";
+//if ($conn->query($sql) === TRUE) {
+//    echo "Database created successfully";
+//} else {
+//    echo "Error creating database: " . $conn->error;
+//}
+//
+//$conn->close();
+//?>
