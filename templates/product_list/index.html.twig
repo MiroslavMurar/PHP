@@ -1,30 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sezname Productu !{% endblock %}
+{% block title %}Seznam produktů{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <br>
+    <h1>Seznam produktů</h1>
+    {% if search is defined %}
+        <div class="alert alert-info">
+            Výsledky vyhledávání výrazu '{{ search }}':
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-3">
+            <br>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <a href="{{ path('product_list_index') }}">
+                        <li class="list-group-item {% if currentCategory is not defined %}active{% endif %}">
+                            Všechny produkty
+                        </li>
+                    </a>
+                    {#{% for category in categories %}#}
+                        {#<a href="{{ path('product_list_category', {'id': category.id}) }}">#}
+                            {#<li class="list-group-item {% if currentCategory is defined and category.id == currentCategory.id %}active{% endif %}">#}
+                                {#{{ category.name }}#}
+                            {#</li>#}
+                        {#</a>#}
+                    {#{% endfor %}#}
+                </ul>
+            </div>
+        </div>
+        <div class="col-9 text-center">
+            {% for row in products|batch(3) %}
+                <br>
+                <div class="row card-deck">
+                    {% for product in row %}
+                        <div class="col-sm-4">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="{{ path('product_detail_index', {'id': product.id}) }}">
+                                            {{ product.name }}
+                                        </a>
+                                    </h4>
+                                    <p class="card-text">{{ product.price|number_format(2, ',', ' ') }} Kč</p>
+                                    {#<a href="{{ path('basket_add', {'id': product.id}) }}" class="btn btn-primary">#}
+                                        Vložit do košíku
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="text-center">
 
-<div class="example-wrapper">
-    <h1>Seznam Productu ! ✅</h1>
-
-    <table class="table">
-        <tbody>
-        {%  for produkt in product %}
-        <tr>
-            {#<th>Name</th>#}
-            <td> Name: </td>
-            <td>
-                <a href="{{ path('product_show', {'id': produkt.id}) }}">
-                    {{ produkt.name }}
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    {%  endfor %}
-</div>
+    </div>
 {% endblock %}
+
+
+
+{#{% extends 'base.html.twig' %}#}
+
+{#{% block title %}Sezname Productu !{% endblock %}#}
+
+{#{% block body %}#}
+{#<style>#}
+    {#.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
+    {#.example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
+{#</style>#}
+
+{#<div class="example-wrapper">#}
+    {#<h1>Seznam Productu ! ✅</h1>#}
+
+    {#<table class="table">#}
+        {#<tbody>#}
+        {#{%  for p in products %}#}
+        {#<tr>#}
+            {#<th>Name</th>#}
+            {#<td> Name: </td>#}
+            {#<td>#}
+                {#<a href="{{ path('product_show', {'id': p.id}) }}">#}
+                    {#{{ p.name }}#}
+                {#</a>#}
+            {#</td>#}
+        {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
+    {#{%  endfor %}#}
+{#</div>#}
+{#{% endblock %}#}

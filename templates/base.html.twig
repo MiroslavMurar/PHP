@@ -1,12 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Re-taška{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/sticky-footer-navbar.css">
+</head>
+<body>
+<header>
+    {% block nav %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="{{ path('homepage_index') }}">Re-taška</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('homepage_index') }}">Hlavní strana</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('product_list_index') }}">Seznam produktů</a>
+                    </li>
+                </ul>
+                {#<form class="form-inline my-2 my-lg-0" action="{{ path('product_list_search') }}">#}
+                    {#<input class="form-control mr-sm-2" type="search" placeholder="Vyhledat produkt..." name="search">#}
+                    {#<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Hledat</button>#}
+                {#</form>#}
+                <ul class="navbar-nav my-2 my-sm-0">
+                    <li class="nav-item">
+                        {#<a class="nav-link" href="{{ path('basket_index') }}">Košík</a>#}
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">Telefon: 777 000 000</span>
+                    </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li class="nav-item">
+                            <span class="nav-link">Přihlášený uživatel: {{ app.user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_logout') }}">Odhlásit</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_index') }}">Zobrazit administraci</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    {% endblock %}
+</header>
+<main role="main" class="container">
+    {% block body %}{% endblock %}
+</main>
+<footer class="footer">
+    <div class="container text-center">
+                <span class="text-muted">
+                    <a href="{{ path('homepage_index') }}">Hlavní strana</a>
+                    | 777 000 000 | info@retaska.cz | © Re-taška 2018 |
+                    {#<a href="{{ path('admin_index') }}" class="text-muted">Administrace</a>#}
+                </span>
+    </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
