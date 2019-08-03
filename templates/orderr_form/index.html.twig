@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderrFormController!{% endblock %}
+
+{% block body %}
+
+    <h1>Objednávkový formulář</h1>
+    <div class="row">
+        <div class="col-8">
+            {% if remainingOnStock is defined and remainingOnStock is not null %}
+                <div class="alert alert-danger">
+                    Na skladě zbývá pouze {{ remainingOnStock }} kusů.
+                </div>
+            {% elseif remainingOnStock is defined %}
+                <div class="alert alert-danger">
+                    Produkt nebyl nalezen.
+                </div>
+            {% endif %}
+                    {{ form(form, {'attr': {'novalidate':'novalidate'}}) }}
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Shrnutí objednávky
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Objednané produkty:</h5>
+                    <p class="card-text">
+                    <ul>
+{#                    {% set productsPrice = 0 %}#}
+{#                    {% for product in basket %}#}
+{#                        <li>#}
+{#                            {{ product.name }}#}
+{#                            ({{ product.price|number_format(0, ',', ' ') }} Kč/ks):#}
+{#                            {{ product.amount }}x#}
+{#                            {% set productsPrice = productsPrice + product.price * product.amount %}#}
+{#                        </li>#}
+{#                    {% endfor %}#}
+                    </ul>
+                    </p>
+                    <h5 class="card-title">Celková cena:</h5>
+                    <p class="card-text">
+{#                       <span id="order_products_price" style="display:none">{{ productsPrice }}</span>#}
+                        <span id="order_total_price">0</span> Kč
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
