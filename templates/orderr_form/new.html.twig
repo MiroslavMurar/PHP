@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OrderrForm{% endblock %}
+
+{% block body %}
+    <h1>Create new OrderrForm</h1>
+
+    {{ include('orderr_form/_form.html.twig') }}
+
+    <a href="{{ path('orderr_form_index') }}">back to list</a>
+{% endblock %}
