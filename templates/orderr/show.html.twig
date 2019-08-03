@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Orderr{% endblock %}
+
+{% block body %}
+    <h1>Orderr</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ orderr.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ orderr.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ orderr.phone }}</td>
+            </tr>
+            <tr>
+                <th>NameAndSurname</th>
+                <td>{{ orderr.nameAndSurname }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ orderr.street }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ orderr.city }}</td>
+            </tr>
+            <tr>
+                <th>Zip</th>
+                <td>{{ orderr.zip }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ orderr.note }}</td>
+            </tr>
+            <tr>
+                <th>TotalPrice</th>
+                <td>{{ orderr.totalPrice }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ orderr.created ? orderr.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('orderr_index') }}">back to list</a>
+
+    <a href="{{ path('orderr_edit', {'id': orderr.id}) }}">edit</a>
+
+    {{ include('orderr/_delete_form.html.twig') }}
+{% endblock %}

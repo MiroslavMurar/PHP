@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Seznam produktů{% endblock %}
-
 {% block body %}
     <br>
     <h1>Seznam produktů</h1>
@@ -21,11 +19,11 @@
                         </li>
                     </a>
                     {#{% for category in categories %}#}
-                        {#<a href="{{ path('product_list_category', {'id': category.id}) }}">#}
-                            {#<li class="list-group-item {% if currentCategory is defined and category.id == currentCategory.id %}active{% endif %}">#}
-                                {#{{ category.name }}#}
-                            {#</li>#}
-                        {#</a>#}
+                    {#<a href="{{ path('product_list_category', {'id': category.id}) }}">#}
+                    {#<li class="list-group-item {% if currentCategory is defined and category.id == currentCategory.id %}active{% endif %}">#}
+                    {#{{ category.name }}#}
+                    {#</li>#}
+                    {#</a>#}
                     {#{% endfor %}#}
                 </ul>
             </div>
@@ -45,8 +43,12 @@
                                     </h4>
                                     <p class="card-text">{{ product.price|number_format(2, ',', ' ') }} Kč</p>
                                     {#<a href="{{ path('basket_add', {'id': product.id}) }}" class="btn btn-primary">#}
-                                        Vložit do košíku
+                                    Vložit do košíku
                                     </a>
+                                    <a href="{{ path('orderr_new', {'id': product.id})}}" class="btn btn-primary">
+                                        Objednat
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -56,39 +58,5 @@
         </div>
     </div>
     <div class="text-center">
-
     </div>
 {% endblock %}
-
-
-
-{#{% extends 'base.html.twig' %}#}
-
-{#{% block title %}Sezname Productu !{% endblock %}#}
-
-{#{% block body %}#}
-{#<style>#}
-    {#.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }#}
-    {#.example-wrapper code { background: #F5F5F5; padding: 2px 6px; }#}
-{#</style>#}
-
-{#<div class="example-wrapper">#}
-    {#<h1>Seznam Productu ! ✅</h1>#}
-
-    {#<table class="table">#}
-        {#<tbody>#}
-        {#{%  for p in products %}#}
-        {#<tr>#}
-            {#<th>Name</th>#}
-            {#<td> Name: </td>#}
-            {#<td>#}
-                {#<a href="{{ path('product_show', {'id': p.id}) }}">#}
-                    {#{{ p.name }}#}
-                {#</a>#}
-            {#</td>#}
-        {#</tr>#}
-        {#</tbody>#}
-    {#</table>#}
-    {#{%  endfor %}#}
-{#</div>#}
-{#{% endblock %}#}
