@@ -27,6 +27,7 @@ class OrderrFormController extends AbstractController
      */
     public function new(Request $request, Product $product): Response
     {
+        $em = $this->getDoctrine()->getManager();
         $orderr = new OrderrForm();
         $form = $this->createForm(OrderrFormType::class, $orderr);
         $form->handleRequest($request);
@@ -36,6 +37,11 @@ class OrderrFormController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($orderr);
             $entityManager->flush();
+
+            $orderr->setCreated(new \DateTime);
+            $em->persist($orderr);
+            $em->flush();
+
             return $this->redirectToRoute('product_list_index');
         }
         return $this->render('orderr_form/index.html.twig', [
