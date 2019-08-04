@@ -44,14 +44,12 @@
                                     <p class="card-text">{{ product.price|number_format(2, ',', ' ') }} Kč</p>
                                     {#<a href="{{ path('basket_add', {'id': product.id}) }}" class="btn btn-primary">#}
                                     Vložit do košíku
-                                    </a>
-                                    <a href="{{ path('orderr_new', {'id': product.id})}}" class="btn btn-primary">
+
+                                    <a href="{{ path('order_form', {'id': product.id})}}" class="btn btn-primary">
                                         Objednat
                                     </a>
 
-                                    <a href="{{ path('new_orderr_form', {'id': product.id})}}" class="btn btn-primary">
-                                        OrderrForm
-                                    </a>
+
 
                                 </div>
                             </div>
