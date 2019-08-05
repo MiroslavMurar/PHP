@@ -36,7 +36,7 @@ class OrderFormController extends AbstractController
             return $this->redirectToRoute('product_list_index');
         }
         return $this->render('order_form/index.html.twig', [
-            'orderr' => $order,
+            'order' => $order,
             'form' => $form->createView(),
             'product' => $product
         ]);
