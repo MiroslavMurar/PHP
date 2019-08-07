@@ -18,13 +18,13 @@
                             Všechny produkty
                         </li>
                     </a>
-                    {#{% for category in categories %}#}
-                    {#<a href="{{ path('product_list_category', {'id': category.id}) }}">#}
-                    {#<li class="list-group-item {% if currentCategory is defined and category.id == currentCategory.id %}active{% endif %}">#}
-                    {#{{ category.name }}#}
-                    {#</li>#}
-                    {#</a>#}
-                    {#{% endfor %}#}
+                    {% for category in categories %}
+                    <a href="{{ path('product_list_category', {'id': category.id}) }}">
+                    <li class="list-group-item {% if currentCategory is defined and category.id == currentCategory.id %}active{% endif %}">
+                    {{ category.name }}
+                    </li>
+                    </a>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
