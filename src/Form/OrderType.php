@@ -30,24 +30,24 @@ class OrderType extends AbstractType
 //            ])
             ->add('note', null, ['label' => 'Poznámka'])
             ->add('totalPrice', null, ['label' => 'Celkova Cena'])
-//            ->add('payment', EntityType::class, [
-//                'class' => Payment::class,
-//                'choice_label' => 'name',
-//                'label' => 'Platba',
-//                'choice_attr' => function($payment) {
-//                    /** @var Payment $payment */
-//                    return ['data-price' => $payment->getPrice()];
-//                }
-//            ])
-//            ->add('delivery', EntityType::class, [
-//                'class' => Delivery::class,
-//                'choice_label' => 'name',
-//                'label' => 'Doprava',
-//                'choice_attr' => function($delivery) {
-//                    /** @var Delivery $delivery */
-//                    return ['data-price' => $delivery->getPrice()];
-//                }
-//            ])
+            ->add('payment', EntityType::class, [
+                'class' => Payment::class,
+                'choice_label' => 'name',
+                'label' => 'Platba',
+                'choice_attr' => function($payment) {
+                    /** @var Payment $payment */
+                    return ['data-price' => $payment->getPrice()];
+                }
+            ])
+            ->add('delivery', EntityType::class, [
+                'class' => Delivery::class,
+                'choice_label' => 'name',
+                'label' => 'Doprava',
+                'choice_attr' => function($delivery) {
+                    /** @var Delivery $delivery */
+                    return ['data-price' => $delivery->getPrice()];
+                }
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Odeslat objednávku',
                 'attr' => ['class' => 'btn-success']

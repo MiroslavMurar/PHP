@@ -62,6 +62,16 @@ class Order
      */
     private $created;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Payment", inversedBy="orders")
+     */
+    private $payment;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Delivery", inversedBy="orders")
+     */
+    private $delivery;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +181,30 @@ class Order
     public function setCreated(?\DateTimeInterface $created): self
     {
         $this->created = $created;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payment
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?Payment $payment): self
+    {
+        $this->payment = $payment;
+
+        return $this;
+    }
+
+    public function getDelivery(): ?Delivery
+    {
+        return $this->delivery;
+    }
+
+    public function setDelivery(?Delivery $delivery): self
+    {
+        $this->delivery = $delivery;
 
         return $this;
     }
