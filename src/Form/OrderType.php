@@ -30,6 +30,7 @@ class OrderType extends AbstractType
 //            ])
             ->add('note', null, ['label' => 'Poznámka'])
             ->add('totalPrice', null, ['label' => 'Celkova Cena'])
+
             ->add('payment', EntityType::class, [
                 'class' => Payment::class,
                 'choice_label' => 'name',

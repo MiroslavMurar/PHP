@@ -21,10 +21,10 @@
                         <a class="nav-link" href="{{ path('product_list_index') }}">Seznam produktů</a>
                     </li>
                 </ul>
-                {#<form class="form-inline my-2 my-lg-0" action="{{ path('product_list_search') }}">#}
-                    {#<input class="form-control mr-sm-2" type="search" placeholder="Vyhledat produkt..." name="search">#}
-                    {#<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Hledat</button>#}
-                {#</form>#}
+                <form class="form-inline my-2 my-lg-0" action="{{ path('product_list_search') }}">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Vyhledat produkt..." name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Hledat</button>
+                </form>
                 <ul class="navbar-nav my-2 my-sm-0">
                     <li class="nav-item">
                         {#<a class="nav-link" href="{{ path('basket_index') }}">Košík</a>#}
