@@ -26,8 +26,15 @@
                     <h5 class="card-title">Objednané produkty:</h5>
                     <p class="card-text">
                         <ul>
-                        {% set productsPrice = product.price %}
-
+                        {% set productsPrice = 0 %}
+                        {% for product in basket %}
+                            <li>
+                                {{ product.name }}
+                                ({{ product.price|number_format(0, ',', ' ') }} Kč/ks):
+                                {{ product.amount }}x
+                                {% set productsPrice = productsPrice + product.price * product.amount %}
+                            </li>
+                        {% endfor %}
                         </ul>
                     </p>
                     <h5 class="card-title">Celková cena:</h5>
