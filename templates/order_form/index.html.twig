@@ -11,8 +11,53 @@
 <div class="example-wrapper">
     <h1>Objednavka</h1>
 
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col-8">
+            {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        </div>
+
+     <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Shrnutí objednávky
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Objednané produkty:</h5>
+                    <p class="card-text">
+                        <ul>
+                        {% set productsPrice = product.price %}
+
+                        </ul>
+                    </p>
+                    <h5 class="card-title">Celková cena:</h5>
+                    <p class="card-text">
+                        <span id="order_products_price" style="display:none">{{ productsPrice }}</span>
+                        <span id="order_total_price">0</span> Kč
+                    </p>
+                </div>
+            </div>
+
 
 
 </div>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script>
+        function updateTotalPrice() {
+            let productsPrice = parseFloat($('#order_products_price').text());
+            let paymentPrice = parseFloat($('#order_payment option:selected').attr('data-price'));
+            let deliveryPrice = parseFloat($('#order_delivery option:selected').attr('data-price'));
+            $('#order_total_price').text(productsPrice + paymentPrice + deliveryPrice)
+        }
+
+        $(document).ready(function() {
+            updateTotalPrice();
+        });
+
+        $('select').on('change', function() {
+            updateTotalPrice();
+        });
+    </script>
 {% endblock %}
