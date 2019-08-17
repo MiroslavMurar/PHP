@@ -252,6 +252,7 @@ class Order
         return $this;
     }
 
+
     public function updateTotalPrice(): void
     {
         $this->totalPrice = 0;
