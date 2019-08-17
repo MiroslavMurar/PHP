@@ -29,7 +29,6 @@
                         {% set productsPrice = 0 %}
                         {% for product in basket %}
                             <li>
-
                                 {{ product.name }}
                                 ({{ product.price|number_format(0, ',', ' ') }} Kč/ks):
                                 {{ product.amount }}x

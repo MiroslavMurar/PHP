@@ -31,6 +31,11 @@ class OrderProduct
      */
     private $amount;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="products")
+     */
+    private $orderr;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,6 +73,18 @@ class OrderProduct
     public function setAmount(int $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getOrderr(): ?Order
+    {
+        return $this->orderr;
+    }
+
+    public function setOrderr(?Order $orderr): self
+    {
+        $this->orderr = $orderr;
 
         return $this;
     }

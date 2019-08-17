@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,6 +73,16 @@ class Order
      * @ORM\ManyToOne(targetEntity="App\Entity\Delivery", inversedBy="orders")
      */
     private $delivery;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderProduct", mappedBy="orderr")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -208,4 +220,53 @@ class Order
 
         return $this;
     }
+
+    /**
+     * @return Collection|OrderProduct[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(OrderProduct $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+            $product->setOrderr($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(OrderProduct $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+            // set the owning side to null (unless already changed)
+            if ($product->getOrderr() === $this) {
+                $product->setOrderr(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function updateTotalPrice(): void
+    {
+        $this->totalPrice = 0;
+
+        foreach ($this->products as $product) {
+            $this->totalPrice += $product->getAmount() * $product->getUnitPrice();
+        }
+
+        if ($this->delivery !== null) {
+            $this->totalPrice += $this->delivery->getPrice();
+        }
+
+        if ($this->payment !== null) {
+            $this->totalPrice += $this->payment->getPrice();
+        }
+    }
+
 }
