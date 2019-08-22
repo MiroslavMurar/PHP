@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
@@ -21,31 +22,40 @@ class Order
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(message="e-mail nie je v spravnom formate")
+     * @Assert\NotBlank(message="Vyplnte prosim Vas email")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Vyplnte prosim Vase telefonne cislo")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Vyplnte prosim Vase meno a priezvisko")
      */
     private $nameAndSurname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Vyplnte prosim ulicu")
      */
     private $street;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Vyplnte prosim mesto")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=5, nullable=true)
+     * @Assert\Regex("/\d/")
+     * @Assert\Length(min="5", max="5")
+     * @Assert\NotBlank(message="Vyplnte prosim PSC v tvare 12345")
      */
     private $zip;
 
@@ -66,11 +76,13 @@ class Order
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Payment", inversedBy="orders")
+     * @Assert\NotBlank(message="Zvolte prosim platbu")
      */
     private $payment;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Delivery", inversedBy="orders")
+     * @Assert\NotBlank(message="Zvolte prosim metodu dorucenia")
      */
     private $delivery;
 

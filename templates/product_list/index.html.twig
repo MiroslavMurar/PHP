@@ -43,12 +43,10 @@
                                     </h4>
                                     <p class="card-text">{{ product.price|number_format(2, ',', ' ') }} Kč</p>
                                     <a href="{{ path('basket_add', {'id': product.id}) }}" class="btn btn-primary">
-                                    Vložit do košíku
-
-                                    <a href="{{ path('order_form', {'id': product.id})}}" class="btn btn-primary">
-                                        Objednat
-                                    </a>
-
+                                        Vložit do košíku </a>
+{#                                    <a href="{{ path('order_form', {'id': product.id})}}" class="btn btn-primary">#}
+{#                                        Objednat#}
+{#                                    </a>#}
                                 </div>
                             </div>
                         </div>
@@ -57,6 +55,7 @@
             {% endfor %}
         </div>
     </div>
+
     <div class="text-center">
     </div>
 {% endblock %}
