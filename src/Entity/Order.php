@@ -47,7 +47,7 @@ class Order
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Vyplnte prosim mesto")
+     * @Assert\NotBlank(message="Vyplnte prosim Vase mesto")
      */
     private $city;
 
